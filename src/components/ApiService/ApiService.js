@@ -16,10 +16,6 @@ const getImages = (searchFoto, page = 1) => {
     });
 };
 
-// const api = {
-//     getImages,
-// };
 
 export default getImages;
 
-// ${ BASE_URL }?q=${searchFoto}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12

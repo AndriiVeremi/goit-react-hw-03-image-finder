@@ -9,13 +9,15 @@ class Searchbar extends Component {
     }
 
     handelSearch = event => {
-        // console.log(event.currentTarget.value)
         this.setState({ searchFoto: event.currentTarget.value.toLowerCase() })
     }
 
     handelSubmit = event => {
         event.preventDefault();
+
         console.log(this.state);
+        console.log(this.state.searchFoto)
+
         if (this.state.searchFoto.trim() === '') {  
             toast.error('Ведіть щось.')
             return;
@@ -41,14 +43,11 @@ class Searchbar extends Component {
                     </button>
 
                     <input
-                        value={this.state.searchFoto}
-                        onChange={this.handelSearch}
-                        name="searchFoto"
-
-                        className={css.input}
                         type="text"
-                        // autocomplete="off"
-                        // autofocus
+                        name="searchFoto"
+                        className={css.input}
+                        value={this.state.searchFoto}
+                        onChange={this.handelSearch}                       
                         placeholder="Search images and photos"
                     />
                 </form>

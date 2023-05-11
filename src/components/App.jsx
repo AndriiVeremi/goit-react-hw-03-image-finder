@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import Modal from './Modal/Modal';
 import Searchbar from './Searchbar/Searchbar';
 import Loader from './Loader/Loader';
@@ -11,7 +14,6 @@ class App extends Component {
   };
 
   onFormSubmit = searchFoto => {
-    // console.log(searchFoto)
     this.setState({ searchFoto });
   };
 
@@ -24,20 +26,10 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Loader />
+        <ToastContainer />
         <Searchbar prop={this.onFormSubmit} />
         <ImageGallery searchFoto={this.state.searchFoto} />
-
-        {/* <button type="button" onClick={this.toggleModal}>
-          Відкрити модалку
-        </button>
-        {showModal && (
-          <Modal onClose={this.toggleModal}>
-            <button type="button" onClick={this.toggleModal}>
-              Закрити модалку
-            </button>
-          </Modal>
-        )} */}
-        <Loader />
       </div>
     );
   }
