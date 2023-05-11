@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
-import Modal from './Modal/Modal';
+// import Modal from './Modal/Modal';
 import Searchbar from './Searchbar/Searchbar';
 import Loader from './Loader/Loader';
+import ImageGallery from './ImageGallery/ImageGallery';
 
 class App extends Component {
   state = {
+    searchFoto: null,
     showModal: false,
+  };
+
+  onFormSubmit = searchFoto => {
+    // console.log(searchFoto)
+    this.setState({ searchFoto });
   };
 
   toggleModal = () => {
@@ -15,12 +22,12 @@ class App extends Component {
   };
 
   render() {
-    const { showModal } = this.state;
     return (
       <div>
-        <Searchbar />
-  
-        <button type="button" onClick={this.toggleModal}>
+        <Searchbar prop={this.onFormSubmit} />
+        <ImageGallery searchFoto={this.state.searchFoto} />
+
+        {/* <button type="button" onClick={this.toggleModal}>
           Відкрити модалку
         </button>
         {showModal && (
@@ -29,7 +36,7 @@ class App extends Component {
               Закрити модалку
             </button>
           </Modal>
-        )}
+        )} */}
         <Loader />
       </div>
     );

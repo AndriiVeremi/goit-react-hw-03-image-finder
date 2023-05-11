@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { toast } from 'react-toastify';
 import { ReactComponent as Search } from '../../icons/search.svg';
 import css from './Searchbar.module.css'
 
@@ -8,17 +9,19 @@ class Searchbar extends Component {
     }
 
     handelSearch = event => {
-
-        console.log(event.currentTarget.value)
-
-        this.setState({ searchFoto: event.currentTarget.value })    
+        // console.log(event.currentTarget.value)
+        this.setState({ searchFoto: event.currentTarget.value.toLowerCase() })
     }
 
     handelSubmit = event => {
         event.preventDefault();
         console.log(this.state);
-        // this.props.onSubmit(this.state);
+        if (this.state.searchFoto.trim() === '') {  
+            toast.error('Ведіть щось.')
+            return;
+        }
 
+        this.props.prop(this.state.searchFoto);
         this.resetForm();
     }
 
@@ -40,7 +43,7 @@ class Searchbar extends Component {
                     <input
                         value={this.state.searchFoto}
                         onChange={this.handelSearch}
-                        name="name"
+                        name="searchFoto"
 
                         className={css.input}
                         type="text"
