@@ -1,8 +1,11 @@
 import { Component } from 'react';
+import DefaultGallery from 'components/DefaulGallery/DefaulGallery';
 import ApiService from '../ApiService/ApiService';
+import Loader from 'components/Loader/Loader';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import Modal from '../Modal/Modal';
-import DefaultImg from '../../images/search.jpeg'
+import Button from 'components/Button/Button';
+import DefaultImg from '../../images/search.png';
 import css from './ImageGallery.module.css';
 
 
@@ -50,31 +53,74 @@ class ImageGallery extends Component {
         }
     }
 
-    onClose = () => {
-        this.setState({ showModal: false });
-    };
-
     setModalData = modalData => {
         this.setState({ modalData, showModal: true });
     };
 
+    loadMore = () => {
+        this.setState(prevState => ({ page: prevState.page + 1 }));
+    };
+
+    onClose = () => {
+        this.setState({ showModal: false });
+    };
+
     render() {
-        const { searchFoto, showModal, modalData } =  this.state;
-        return (
-            <>
-                <ul className={css.gallery}>
-                    {searchFoto.map(image => (
-                        <ImageGalleryItem
-                            key={image.id}
-                            item={image}
-                            imageClick={this.setModalData}
-                        />
-                    ))}
-                </ul>
+        const { searchFoto, error, status, page, totalPages, showModal, modalData } =  this.state;
+        
+        if (status === 'idle') {
+            return <DefaultGallery text="Let`s find images!" />;
+            
+        }
+
+        if (status === 'pending') {
+            return <Loader className={css.spinner} />;
+        }
+
+        // if (status === 'rejected') {
+        //     return <ImageErrorView message={error.message} />;
+        // }
+       
+        if (status === 'resolved') {
+            return (
+                <>
+                    <ul className={css.gallery}>
+                        {searchFoto.map(image => (
+                            <ImageGalleryItem
+                                key={image.id}
+                                item={image}
+                                onImgClick={this.setModalData}
+                            />
+                        ))}
+                    </ul>
+                    {searchFoto.length > 0 && status !== 'pending' && page <= totalPages && (
+                        <Button onClick={this.loadMore}>Load More</Button>
+                    )}
+
+                    {showModal && (<Modal modalData={modalData} onClose={this.onClose} />)}
+                </>
+            )
+        }
+
+        // return (
+        //     <>
+            
+        //         <ul className={css.gallery}>
+        //             {searchFoto.map(image => (
+        //                 <ImageGalleryItem
+        //                     key={image.id}
+        //                     item={image}
+        //                     onImgClick={this.setModalData}
+        //                 />
+        //             ))}
+        //         </ul>
+        //         {searchFoto.length > 0 && status !== 'pending' && page <= totalPages && (
+        //             <Button onClick={this.loadMore}>Load More</Button>
+        //         )}
                 
-                {showModal && (<Modal modalData={modalData} onClose={this.onClose} />)}
-            </>
-        )
+        //         {showModal && (<Modal modalData={modalData} onClose={this.onClose} />)}
+        //     </>
+        // )
     }
 }
 

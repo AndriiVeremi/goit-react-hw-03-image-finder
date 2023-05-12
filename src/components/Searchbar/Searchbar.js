@@ -24,15 +24,15 @@ class Searchbar extends Component {
         }
 
         this.props.prop(this.state.searchFoto);
-        this.resetForm();
+        // this.resetForm();
         
     }
 
-    resetForm = () => {
-        this.setState({
-            searchFoto: '',
-        })
-    }
+    // resetForm = () => {
+    //     this.setState({
+    //         searchFoto: '',
+    //     })
+    // }
 
     render() {
         return (

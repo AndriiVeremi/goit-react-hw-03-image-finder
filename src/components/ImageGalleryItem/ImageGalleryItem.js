@@ -1,12 +1,12 @@
 import React from 'react';
 import css from './ImageGalleryItem.module.css';
 
-const ImageGalleryItem = ({ item, imageClick }) => {
+const ImageGalleryItem = ({ item, onImgClick }) => {
     const { largeImageURL, tags, webformatURL } = item;
     return (
         <li className={css.image__item} onClick={e => {
             e.preventDefault();
-            imageClick({ largeImageURL, tags });
+            onImgClick({ largeImageURL, tags });
         }}>
             <img
                 className={css.image}

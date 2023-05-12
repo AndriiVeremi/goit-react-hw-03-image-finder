@@ -19,7 +19,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Loader />
         <ToastContainer />
         <Searchbar prop={this.onFormSubmit} />
         <ImageGallery searchFoto={this.state.searchFoto} />
