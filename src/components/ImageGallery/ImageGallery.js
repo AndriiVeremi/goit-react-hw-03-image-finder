@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import ApiService from '../ApiService/ApiService';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
-// import css from './ImageGallery.module.css';
+import css from './ImageGallery.module.css';
 
 
 class ImageGallery extends Component {
@@ -31,7 +31,7 @@ componentDidUpdate(prevProps, prevState) {
 render() {
 
     return (
-        <ul className='gallery'>
+        <ul className={css.gallery}>
             <ImageGalleryItem searchFoto={this.state.searchFoto} />
         </ul>
     )
