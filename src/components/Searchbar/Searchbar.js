@@ -15,8 +15,8 @@ class Searchbar extends Component {
     handelSubmit = event => {
         event.preventDefault();
 
-        console.log(this.state);
-        console.log(this.state.searchFoto)
+        // console.log(this.state);
+        // console.log(this.state.searchFoto)
 
         if (this.state.searchFoto.trim() === '') {  
             toast.error('Ведіть щось.')
@@ -24,14 +24,15 @@ class Searchbar extends Component {
         }
 
         this.props.prop(this.state.searchFoto);
-        this.resetForm();
+        // this.resetForm();
+        this.setState({ pokemonName: '' });
     }
 
-    resetForm = () => {
-        this.setState({
-            searchFoto: '',
-        })
-    }
+    // resetForm = () => {
+    //     this.setState({
+    //         searchFoto: '',
+    //     })
+    // }
 
     render() {
         return (
