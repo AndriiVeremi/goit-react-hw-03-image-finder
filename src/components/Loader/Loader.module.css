@@ -1,5 +1,6 @@
 .spinner {
-  display: block;
-  margin: 0 auto;
+  margin-top: 10vw;
+  display: flex;
+  justify-content: center;
 }
 

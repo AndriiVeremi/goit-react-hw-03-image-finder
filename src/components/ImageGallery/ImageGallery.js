@@ -2,21 +2,19 @@ import { Component } from 'react';
 import DefaultGallery from 'components/DefaulGallery/DefaulGallery';
 import ApiService from '../ApiService/ApiService';
 import Loader from 'components/Loader/Loader';
-import ImageErrorView from '../ImageErrorView/ImageErrorViver'
+import ImageErrorView from '../ErrorGallery/ErrorGallery'
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import Modal from '../Modal/Modal';
 import Button from 'components/Button/Button';
-import DefaultImg from '../../images/search.png';
+import DefaultImg from '../../images/search.jpg';
 import css from './ImageGallery.module.css';
-
-
 
 class ImageGallery extends Component {
 
     state = {
         value: '',
         searchFoto: [],
-        
+
         showModal: false,
         modalData: { img: DefaultImg, tags: '' },
 
@@ -33,7 +31,6 @@ class ImageGallery extends Component {
         }
         return null;
     }
-
 
     componentDidUpdate(prevProps, prevState) {
         const { page } = this.state;
@@ -75,11 +72,11 @@ class ImageGallery extends Component {
     };
 
     render() {
-        const { searchFoto, error, status, page, totalPages, showModal, modalData } =  this.state;
-        
+        const { searchFoto, error, status, page, totalPages, showModal, modalData } = this.state;
+
         if (status === 'idle') {
+            // return <Loader className={css.spinner} />;
             return <DefaultGallery text="Let`s find images!" />;
-            
         }
 
         if (status === 'pending') {
@@ -97,7 +94,7 @@ class ImageGallery extends Component {
                 />
             );
         }
-       
+
         if (status === 'resolved') {
             return (
                 <>

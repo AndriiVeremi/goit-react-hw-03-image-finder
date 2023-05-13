@@ -1,7 +1,6 @@
 import React from 'react';
 import error from '../../images/error.jpg';
-import css from './ImageErrorViver.module.css'
-
+import css from './ErrorGallery.module.css'
 
 function ImageErrorView({ message }) {
     return (
