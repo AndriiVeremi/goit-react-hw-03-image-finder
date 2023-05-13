@@ -5,36 +5,30 @@ import css from './Searchbar.module.css'
 
 class Searchbar extends Component {
     state = {
-        searchFoto: '',
+        value: '',
     }
 
     handelSearch = event => {
-        this.setState({ searchFoto: event.currentTarget.value.toLowerCase() })
+        this.setState({ value: event.currentTarget.value.toLowerCase() })
     }
 
     handelSubmit = event => {
         event.preventDefault();
-
-        // console.log(this.state);
-        // console.log(this.state.searchFoto)
-
-        if (this.state.searchFoto.trim() === '') {  
-            toast.error('Ведіть щось.')
-            return;
+        if (this.state.value.trim() === '') {
+            return toast.error('Ведіть щось.')
         }
-
-        this.props.prop(this.state.searchFoto);
-        // this.resetForm();
-        
+        this.props.prop(this.state.value);
+        this.resetForm();
     }
 
-    // resetForm = () => {
-    //     this.setState({
-    //         searchFoto: '',
-    //     })
-    // }
+    resetForm = () => {
+        this.setState({
+            value: '',
+        })
+    }
 
     render() {
+        const { value } = this.state;
         return (
             <header className={css.searchbar}>
                 <form className={css.searchForm} onSubmit={this.handelSubmit}>
@@ -47,8 +41,8 @@ class Searchbar extends Component {
                         type="text"
                         name="searchFoto"
                         className={css.input}
-                        value={this.state.searchFoto}
-                        onChange={this.handelSearch}                       
+                        value={value}
+                        onChange={this.handelSearch}
                         placeholder="Search images and photos"
                     />
                 </form>

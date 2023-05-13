@@ -6,7 +6,7 @@ const DefaultGallery = ({ text }) => {
     return (
         <div className={css.wrapper}>
             <p className={css.text}>{text}</p>
-            <img src={search} alt="search" />
+            <img src={search} width="500" alt="search" />
         </div>
     );
 };

@@ -2,6 +2,7 @@ import { Component } from 'react';
 import DefaultGallery from 'components/DefaulGallery/DefaulGallery';
 import ApiService from '../ApiService/ApiService';
 import Loader from 'components/Loader/Loader';
+import ImageErrorView from '../ImageErrorView/ImageErrorViver'
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import Modal from '../Modal/Modal';
 import Button from 'components/Button/Button';
@@ -13,9 +14,9 @@ import css from './ImageGallery.module.css';
 class ImageGallery extends Component {
 
     state = {
-        searchFoto: [],
         value: '',
-
+        searchFoto: [],
+        
         showModal: false,
         modalData: { img: DefaultImg, tags: '' },
 
@@ -48,13 +49,13 @@ class ImageGallery extends Component {
 
             ApiService(nextName, page)
                 .then(gallery => {
-                    this.setState({
+                    this.setState(prevState => ({
                         searchFoto: page === 1
                             ? gallery.hits
                             : [...prevState.searchFoto, ...gallery.hits],
                         totalPages: Math.floor(gallery.totalHits / 12),
                         status: 'resolved'
-                    })
+                    }))
                 })
                 .catch(error => this.setState({ error, status: 'rejected' }))
 
@@ -85,9 +86,17 @@ class ImageGallery extends Component {
             return <Loader className={css.spinner} />;
         }
 
-        // if (status === 'rejected') {
-        //     return <ImageErrorView message={error.message} />;
-        // }
+        if (status === 'rejected') {
+            return <ImageErrorView message={error.message} />;
+        }
+
+        if (searchFoto.length === 0) {
+            return (
+                <ImageErrorView
+                    message={`Oops... there are no images matching your search... `}
+                />
+            );
+        }
        
         if (status === 'resolved') {
             return (
@@ -101,6 +110,7 @@ class ImageGallery extends Component {
                             />
                         ))}
                     </ul>
+
                     {searchFoto.length > 0 && status !== 'pending' && page <= totalPages && (
                         <Button onClick={this.loadMore}>Load More</Button>
                     )}
@@ -109,26 +119,6 @@ class ImageGallery extends Component {
                 </>
             )
         }
-
-        // return (
-        //     <>
-            
-        //         <ul className={css.gallery}>
-        //             {searchFoto.map(image => (
-        //                 <ImageGalleryItem
-        //                     key={image.id}
-        //                     item={image}
-        //                     onImgClick={this.setModalData}
-        //                 />
-        //             ))}
-        //         </ul>
-        //         {searchFoto.length > 0 && status !== 'pending' && page <= totalPages && (
-        //             <Button onClick={this.loadMore}>Load More</Button>
-        //         )}
-                
-        //         {showModal && (<Modal modalData={modalData} onClose={this.onClose} />)}
-        //     </>
-        // )
     }
 }
 
