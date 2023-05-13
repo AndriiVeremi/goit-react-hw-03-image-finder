@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { createPortal } from "react-dom";
-import css from './Modal.module.css';
+import { Overlay, Modals, Img, Text } from "./Modal.styled";
 
 const modal = document.querySelector('#modal');
 
@@ -28,12 +28,12 @@ class Modal extends Component {
     render() {
         const { largeImageURL, tags } = this.props.modalData;
         return createPortal(
-            <div className={css.overlay} onClick={this.handleBackdropClick}>
-                <div className={css.modal}>
-                    <img className={css.img} src={largeImageURL} alt={tags} />
-                    <p className={css.text}>{tags}</p>
-                </div>
-            </div>, modal   
+            <Overlay onClick={this.handleBackdropClick}>
+                <Modals>
+                    <Img src={largeImageURL} alt={tags} />
+                    <Text>{tags}</Text>
+                </Modals>
+            </Overlay>, modal   
         );
     }
 }

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { toast } from 'react-toastify';
 import { ReactComponent as Search } from '../../icons/search.svg';
-import css from './Searchbar.module.css'
+import { Header, Form, Button, Span, Input } from './SearchBar.styled';
 
-class Searchbar extends Component {
+class SearchBar extends Component {
     state = {
         value: '',
     }
@@ -30,25 +30,24 @@ class Searchbar extends Component {
     render() {
         const { value } = this.state;
         return (
-            <header className={css.searchbar}>
-                <form className={css.searchForm} onSubmit={this.handelSubmit}>
-                    <button type="submit" className={css.button}>
+            <Header>
+                <Form onSubmit={this.handelSubmit}>
+                    <Button type="submit">
                         <Search />
-                        <span className={css.button__label}>Search</span>
-                    </button>
+                        <Span >Search</Span>
+                    </Button>
 
-                    <input
+                    <Input
                         type="text"
                         name="searchFoto"
-                        className={css.input}
                         value={value}
                         onChange={this.handelSearch}
                         placeholder="Search images and photos"
                     />
-                </form>
-            </header>
+                </Form>
+            </Header>
         )
     }
 }
 
-export default Searchbar;
+export default SearchBar;

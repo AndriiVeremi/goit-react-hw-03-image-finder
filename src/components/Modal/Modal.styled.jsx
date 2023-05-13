@@ -1,4 +1,6 @@
-.overlay {
+import styled from '@emotion/styled';
+
+export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -9,9 +11,9 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 1200;
-}
+`;
 
-.modal {
+export const Modals = styled.div`
   max-width: calc(100vw - 48px);
   max-height: calc(100vh - 24px);
   position: absolute;
@@ -22,18 +24,18 @@
   padding: 12px;
   background-color: #fff;
   border-radius: 3px;
-  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
-    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-}
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+`;
 
-.img {
+export const Img = styled.img`
   max-width: calc(100vw - 48px);
   max-height: calc(100vh - 24px);
-}
+`;
 
-.text {
+export const Text = styled.p`
   font-size: 24px;
-  color: #2196F3;
+  color: #2196f3;
   margin-top: 8px;
   margin-bottom: 8px;
-}
+`;
