@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import DefaultGallery from 'components/DefaulGallery/DefaulGallery';
-import ApiService from '../ApiService/ApiService';
+import DefaultGallery from 'components/DefaultGallery/DefaultGallery';
+import ApiService from '../../ApiService/ApiService';
 import Loader from 'components/Loader/Loader';
 import ImageErrorView from '../ErrorGallery/ErrorGallery'
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
