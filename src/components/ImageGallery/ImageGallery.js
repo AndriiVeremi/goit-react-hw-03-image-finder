@@ -14,6 +14,7 @@ class ImageGallery extends Component {
 
     state = {
         searchFoto: [],
+        value: '',
 
         showModal: false,
         modalData: { img: DefaultImg, tags: '' },
@@ -25,13 +26,20 @@ class ImageGallery extends Component {
         error: null,
     }
 
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (prevState.value !== nextProps.value) {
+            return { page: 1, value: nextProps.value };
+        }
+        return null;
+    }
+
 
     componentDidUpdate(prevProps, prevState) {
         const { page } = this.state;
         const prevName = prevProps.searchFoto;
         const nextName = this.props.searchFoto;
 
-        if (prevName !== nextName) {
+        if (prevName !== nextName || prevState.page !== page) {
             this.setState({ status: 'pending' });
 
             if (this.state.error) {
