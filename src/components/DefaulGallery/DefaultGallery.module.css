@@ -7,4 +7,6 @@
 
 .text {
     font-size: 35px;
+    color: #323232;
+    text-shadow: 1px  2px 2px #2196F3;
 }

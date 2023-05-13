@@ -6,7 +6,7 @@ function ImageErrorView({ message }) {
     return (
         <div className={css.wrapper}>
             <p className={css.text}>{message}</p>
-            <img src={error} width="500" alt="error" />           
+            <img src={error} width="350" alt="error" />           
         </div>
     );
 }

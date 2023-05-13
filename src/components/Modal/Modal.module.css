@@ -26,3 +26,14 @@
     0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 }
 
+.img {
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 24px);
+}
+
+.text {
+  font-size: 24px;
+  color: #2196F3;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}

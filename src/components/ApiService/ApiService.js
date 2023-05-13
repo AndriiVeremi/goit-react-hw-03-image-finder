@@ -16,6 +16,5 @@ const getImages = (searchFoto, page = 1) => {
     });
 };
 
-
 export default getImages;
 
