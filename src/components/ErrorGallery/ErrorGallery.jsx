@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import error from '../../images/error.jpg';
 import { Wrapper, Text, Img } from './ErrorGallery.styled';
 
@@ -12,3 +13,7 @@ function ImageErrorView({ message }) {
 }
 
 export default ImageErrorView;
+
+ImageErrorView.propType = {
+    message: PropTypes.string,
+}

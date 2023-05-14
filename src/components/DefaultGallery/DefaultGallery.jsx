@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import search from '../../images/search.jpg';
 import { Wrapper, Text, Img } from './DefaultGallery.styled';
 
@@ -12,3 +13,7 @@ const DefaultGallery = ({ text }) => {
 };
 
 export default DefaultGallery;
+
+DefaultGallery.propType = {
+  text: PropTypes.string,
+};

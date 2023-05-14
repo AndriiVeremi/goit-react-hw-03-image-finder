@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import DefaultGallery from 'components/DefaultGallery/DefaultGallery';
 import ApiService from '../../ApiService/ApiService';
 import Loader from 'components/Loader/Loader';
@@ -55,7 +56,6 @@ class ImageGallery extends Component {
                     }))
                 })
                 .catch(error => this.setState({ error, status: 'rejected' }))
-
         }
     }
 
@@ -119,3 +119,7 @@ class ImageGallery extends Component {
 }
 
 export default ImageGallery;
+
+ImageGallery.propType = {
+    value: PropTypes.string.isRequired,
+}
