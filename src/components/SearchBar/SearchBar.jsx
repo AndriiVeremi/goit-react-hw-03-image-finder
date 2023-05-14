@@ -16,7 +16,7 @@ class SearchBar extends Component {
   handelSubmit = event => {
     event.preventDefault();
     if (this.state.value.trim() === '') {
-      return toast.error('Ведіть щось.');
+      return toast.error('Nothing was entered');
     }
     this.props.prop(this.state.value);
     this.resetForm();
