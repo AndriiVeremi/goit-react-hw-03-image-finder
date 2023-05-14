@@ -7,7 +7,7 @@ import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import Modal from '../Modal/Modal';
 import Button from 'components/Button/Button';
 import DefaultImg from '../../images/search.jpg';
-import css from './ImageGallery.module.css';
+import { Gallery } from './ImageGallery.styled';
 
 class ImageGallery extends Component {
 
@@ -75,12 +75,11 @@ class ImageGallery extends Component {
         const { searchFoto, error, status, page, totalPages, showModal, modalData } = this.state;
 
         if (status === 'idle') {
-            // return <Loader className={css.spinner} />;
             return <DefaultGallery text="Let`s find images!" />;
         }
 
         if (status === 'pending') {
-            return <Loader className={css.spinner} />;
+            return <Loader />;
         }
 
         if (status === 'rejected') {
@@ -98,7 +97,7 @@ class ImageGallery extends Component {
         if (status === 'resolved') {
             return (
                 <>
-                    <ul className={css.gallery}>
+                    <Gallery>
                         {searchFoto.map(image => (
                             <ImageGalleryItem
                                 key={image.id}
@@ -106,7 +105,7 @@ class ImageGallery extends Component {
                                 onImgClick={this.setModalData}
                             />
                         ))}
-                    </ul>
+                    </Gallery>
 
                     {searchFoto.length > 0 && status !== 'pending' && page <= totalPages && (
                         <Button onClick={this.loadMore}>Load More</Button>
