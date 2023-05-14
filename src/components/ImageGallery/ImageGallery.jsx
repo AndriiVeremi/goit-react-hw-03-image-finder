@@ -39,7 +39,7 @@ class ImageGallery extends Component {
         const nextName = this.props.searchFoto;
 
         if (prevName !== nextName || prevState.page !== page) {
-            this.setState({ status: 'pending', value: null });
+            this.setState({ status: 'pending'});
 
             if (this.state.error) {
                 this.setState({ error: null });
