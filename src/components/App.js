@@ -6,19 +6,20 @@ import ImageGallery from './ImageGallery/ImageGallery';
 
 class App extends Component {
   state = {
-    searchFoto: null,
+    textSearch: null,
   };
 
-  onFormSubmit = searchFoto => {
-    this.setState({ searchFoto });
+  onFormSubmit = textSearch => {
+    this.setState({ textSearch });
   };
 
   render() {
+    const { textSearch } = this.state;
     return (
       <div>
         <ToastContainer />
         <Searchbar prop={this.onFormSubmit} />
-        <ImageGallery searchFoto={this.state.searchFoto} />
+        <ImageGallery value={textSearch} />
       </div>
     );
   }

@@ -40,7 +40,7 @@ class SearchBar extends Component {
 
           <Input
             type="text"
-            name="searchFoto"
+            name="value"
             value={value}
             onChange={this.handelSearch}
             placeholder="Search images and photos"
