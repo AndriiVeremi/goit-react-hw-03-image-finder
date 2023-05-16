@@ -34,7 +34,6 @@ class App extends Component {
 
     if (prevName !== nextName || prevState.page !== page) {
       this.setState({ status: 'pending' });
-      console.log(this.value)
 
       if (this.state.error) {
         this.setState({ error: null });
