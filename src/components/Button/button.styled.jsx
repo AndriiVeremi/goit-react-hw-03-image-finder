@@ -24,6 +24,4 @@ export const Buttons = styled.button`
   &:focus {
     background-color: #ebeb3d;
   }
-`; 
-
-
+`;
