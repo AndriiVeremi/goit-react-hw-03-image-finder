@@ -55,7 +55,7 @@ class App extends Component {
     }
   }
 
-  handleFormSubmit = value => {
+  formResetSubmit = value => {
     this.setState({
       page: 1,
     });
@@ -90,14 +90,13 @@ class App extends Component {
           <ToastContainer />
 
           <SearchBar
-            onSubmit={this.handleFormSubmit}
+            onSubmit={this.formResetSubmit}
             resetPage={page}
-            clearGallery={this.state.gallery}
+            resetGallery={gallery}
           />
 
           <DefaultGallery text="Let`s find images!" />
         </>
-        
       );
     }
 
@@ -123,11 +122,11 @@ class App extends Component {
           <ToastContainer />
 
           <SearchBar
-            onSubmit={this.handleFormSubmit}
+            onSubmit={this.formResetSubmit}
             resetPage={page}
-            clearPictures={gallery}
-          />   
-          
+            resetGallery={gallery}
+          />
+
           <ImageGallery gallery={gallery} showModal={this.showModal} />
 
           {gallery.length > 0 && status !== 'pending' && page <= totalPages && (
