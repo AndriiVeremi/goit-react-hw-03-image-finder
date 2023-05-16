@@ -18,7 +18,7 @@ class SearchBar extends Component {
     if (this.state.value.trim() === '') {
       return toast.error('Nothing was entered');
     }
-    this.props.prop(this.state.value);
+    this.props.onSubmit(this.state.value);
     this.resetForm();
   };
 
@@ -29,7 +29,6 @@ class SearchBar extends Component {
   };
 
   render() {
-    const { value } = this.state;
     return (
       <Header>
         <Form onSubmit={this.handelSubmit}>
@@ -41,7 +40,7 @@ class SearchBar extends Component {
           <Input
             type="text"
             name="value"
-            value={value}
+            value={this.state.value}
             onChange={this.handelSearch}
             placeholder="Search images and photos"
           />

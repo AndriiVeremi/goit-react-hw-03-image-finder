@@ -33,9 +33,4 @@ export const Img = styled.img`
   max-height: calc(100vh - 24px);
 `;
 
-export const Text = styled.p`
-  font-size: 24px;
-  color: #2196f3;
-  margin-top: 8px;
-  margin-bottom: 8px;
-`;
+

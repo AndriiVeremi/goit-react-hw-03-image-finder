@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
-import { Overlay, Modals, Img, Text } from './Modal.styled';
+import { Overlay, Modals, Img } from './Modal.styled';
 
 const modal = document.querySelector('#modal');
 
@@ -27,12 +27,11 @@ class Modal extends Component {
   };
 
   render() {
-    const { largeImageURL, tags } = this.props.modalData;
+
     return createPortal(
-      <Overlay onClick={this.handleBackdropClick}>
-        <Modals>
-          <Img src={largeImageURL} alt={tags} />
-          <Text>{tags}</Text>
+      <Overlay onClick={this.handleBackdropClick || this.handleKey}>
+        <Modals>        
+          <Img src={this.props.modalData} alt='' />
         </Modals>
       </Overlay>,
       modal
@@ -42,10 +41,7 @@ class Modal extends Component {
 
 export default Modal;
 
-Modal.propType = {
-  modalData: PropTypes.shape({
-    largeImageURL: PropTypes.string.isRequired,
-    tags: PropTypes.string.isRequired,
-  }).isRequired,
-  onClose: PropTypes.func,
+Modal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  modalData: PropTypes.string.isRequired,
 };
