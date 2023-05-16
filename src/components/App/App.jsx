@@ -18,7 +18,7 @@ class App extends Component {
     gallery: [],
 
     showModal: false,
-    modalData: { img: DefaultImg, tags: '' },
+    modalData: { img: DefaultImg },
 
     page: 1,
     totalPages: 0,
