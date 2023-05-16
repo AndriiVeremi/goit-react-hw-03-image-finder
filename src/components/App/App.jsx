@@ -8,7 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ImageGallery from 'components/ImageGallery/ImageGallery';
 import Modal from '../Modal/Modal';
-import Button from 'components/Button/Button';
+import Button from '../Button/Button';
 import DefaultImg from '../../images/search.jpg';
 
 
