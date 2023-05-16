@@ -1,11 +1,13 @@
-import { Buttons } from './Button.styled';
 import PropTypes from 'prop-types';
+import { Buttons } from './Button.styled';
 
 const Button = ({ children, onClick = null }) => {
-    return <Buttons type='button' onClick={onClick}>
-        {children}
+  return (
+    <Buttons type="button" onClick={onClick}>
+      {children}
     </Buttons>
-}
+  );
+};
 
 export default Button;
 
