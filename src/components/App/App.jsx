@@ -105,11 +105,11 @@ class App extends Component {
   //         resetPage={page}
   //         resetGallery={gallery}
   //       />
+  //        {isLoading && <Loader />}
   //       { (
   //         <ImageGallery gallery={gallery} showModal={this.showModal} />
   //       )}
   //       {showModal && <Modal modalData={modalData} onClose={this.onClose} />}
-  //       {isLoading && <Loader />}
   //       {gallery.length > 0 && status !== 'pending' && page <= totalPages && (
   //         <Button onClick={this.loadMore}>Load More</Button>
   //       )}
