@@ -11,7 +11,6 @@ import Modal from '../Modal/Modal';
 import Button from '../Button/Button';
 import DefaultImg from '../../images/search.jpg';
 
-
 class App extends Component {
   state = {
     value: '',
@@ -78,9 +77,8 @@ class App extends Component {
     this.setState({ showModal: false });
   };
 
-
   render() {
-    const { gallery, error, status, page, totalPages, showModal, modalData, } =
+    const { gallery, error, status, page, totalPages, showModal, modalData } =
       this.state;
 
     if (status === 'idle') {
@@ -102,33 +100,49 @@ class App extends Component {
     if (status === 'pending') {
       return (
         <>
-          <Loader />
-
           <SearchBar
             onSubmit={this.formResetSubmit}
             resetPage={page}
             resetGallery={gallery}
           />
 
+          <Loader />
+
           <ImageGallery gallery={gallery} showModal={this.showModal} />
 
           {gallery.length > 0 && status !== 'pending' && page <= totalPages && (
             <Button onClick={this.loadMore}>Load More</Button>
           )}
-          
         </>
+        
       );
     }
 
     if (status === 'rejected') {
-      return <ImageErrorView message={error.message} />;
+      return (
+        <>
+          <SearchBar
+            onSubmit={this.formResetSubmit}
+            resetPage={page}
+            resetGallery={gallery}
+          />
+          <ImageErrorView message={error.message} />
+        </>
+      );
     }
 
     if (gallery.length === 0) {
       return (
-        <ImageErrorView
-          message={`Oops... there are no images matching your search... `}
-        />
+        <>
+          <SearchBar
+            onSubmit={this.formResetSubmit}
+            resetPage={page}
+            resetGallery={gallery}
+          />
+          <ImageErrorView
+            message={`Oops... there are no images matching your search... `}
+          />
+        </>
       );
     }
 
