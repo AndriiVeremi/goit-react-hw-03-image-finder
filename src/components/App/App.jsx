@@ -24,6 +24,8 @@ class App extends Component {
 
     status: 'idle',
     error: null,
+
+    // isLoading: false,  // Варіант 2
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -33,6 +35,8 @@ class App extends Component {
 
     if (prevName !== nextName || prevState.page !== page) {
       this.setState({ status: 'pending' });
+
+      // this.setState({ isLoading: true });  // Варіант 2
 
       if (this.state.error) {
         this.setState({ error: null });
@@ -49,7 +53,10 @@ class App extends Component {
             status: 'resolved',
           }));
         })
-        .catch(error => this.setState({ error, status: 'rejected' }));
+        .catch(error => this.setState({ error, status: 'rejected' }))
+        .finally(() => {
+          this.setState({ isLoading: false });
+        });
     }
   }
 
@@ -76,6 +83,39 @@ class App extends Component {
   onClose = () => {
     this.setState({ showModal: false });
   };
+
+  // Варіант 2
+
+  // render() {
+  //   const {
+  //     gallery,
+  //     error,
+  //     status,
+  //     page,
+  //     totalPages,
+  //     showModal,
+  //     modalData,
+  //     isLoading,
+  //   } = this.state;
+
+  //   return (
+  //     <div>
+  //       <SearchBar
+  //         onSubmit={this.formResetSubmit}
+  //         resetPage={page}
+  //         resetGallery={gallery}
+  //       />
+  //       { (
+  //         <ImageGallery gallery={gallery} showModal={this.showModal} />
+  //       )}
+  //       {showModal && <Modal modalData={modalData} onClose={this.onClose} />}
+  //       {isLoading && <Loader />}
+  //       {gallery.length > 0 && status !== 'pending' && page <= totalPages && (
+  //         <Button onClick={this.loadMore}>Load More</Button>
+  //       )}
+  //     </div>
+  //   );
+  // }
 
   render() {
     const { gallery, error, status, page, totalPages, showModal, modalData } =
@@ -114,7 +154,6 @@ class App extends Component {
             <Button onClick={this.loadMore}>Load More</Button>
           )}
         </>
-
       );
     }
 
