@@ -100,7 +100,24 @@ class App extends Component {
     }
 
     if (status === 'pending') {
-      return <Loader />;
+      return (
+        <>
+          <Loader />
+
+          <SearchBar
+            onSubmit={this.formResetSubmit}
+            resetPage={page}
+            resetGallery={gallery}
+          />
+
+          <ImageGallery gallery={gallery} showModal={this.showModal} />
+
+          {gallery.length > 0 && status !== 'pending' && page <= totalPages && (
+            <Button onClick={this.loadMore}>Load More</Button>
+          )}
+          
+        </>
+      );
     }
 
     if (status === 'rejected') {
